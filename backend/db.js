@@ -3,5 +3,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-mongoose.connection(process.env.MONGODB_URI);
-mongoose.Schema()
+await mongoose.connect(process.env.MONGODB_URI);
+const usersSchema = mongoose.Schema({
+    email: String,
+    firstname: String,
+    lastname: String,
+    password: String
+});
+
+export const Users = mongoose.model("User",usersSchema);
